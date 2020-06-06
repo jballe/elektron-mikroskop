@@ -11,7 +11,14 @@
   "devDependencies": {
     "@tensorflow-models/coco-ssd": "^2.0.3",
     "@tensorflow/tfjs": "^2.0.0",
+    "base64-inline-loader": "^1.1.1",
+    "copy-webpack-plugin": "^6.0.2",
+    "d3": "^5.16.0",
+    "exports-loader": "^0.7.0",
+    "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
+    "marvinj": "^1.0.0",
+    "pixfinder": "^0.2.6",
     "webpack": "^4.23.1",
     "webpack-nano": "^0.6.1",
     "webpack-plugin-serve": "^0.4.0"

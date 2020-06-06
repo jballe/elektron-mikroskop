@@ -1,28 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title><%= htmlWebpackPlugin.options.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <video width="640" height="480"></video>
+    <video width="640" height="480" style="display: none;"></video>
+    <canvas width="640" height="480"></canvas>
     <svg width="640" height="480">
-      <style>
-        .box {
-          stroke-width: 2;
-          fill: none;
-          stroke: red;
-        }
-        .label {
-          font-size: 12px;
-          fill: white;
-          text-anchor: middle;
-        }
-        .label-rect {
-          fill: black;
-        }
-      </style>
+      <defs id="mdef">
+        <pattern id="typeA" x="0" y="0" height="40" width="40">
+          <image
+            x="0"
+            y="0"
+            width="50"
+            height="50"
+            xlink:href="/assets/type-a.png"
+          />
+          <pattern id="typeB" x="0" y="0" height="40" width="40">
+            <image
+              x="0"
+              y="0"
+              width="50"
+              height="50"
+              xlink:href="/assets/type-b.png"
+            />
+        </pattern>
+      </defs>
     </svg>
   </body>
 </html>
