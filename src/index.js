@@ -1,48 +1,40 @@
-//import { setupDetection, detect } from "./detection-cco-ssd";
-//import { setupDetection, detect } from './detection-pixfinder';
-import { setupDetection, detect } from "./detection-marvinj";
-import { setupVideo } from "./video";
-import { setupRender, renderResults } from "./render";
-import { canvas, video } from "./elements";
-import { renderParticles } from "./particles.js";
+import { splashScreen } from "./pages/splash";
+import { chooseScreen } from "./pages/choose";
+import { analyzeScreen } from "./pages/analyze";
+import * as elements from "./services/elements";
+require("./index.css");
 
-const data = {
-  canvas: canvas,
-  canvasCtx: canvas.getContext("2d"),
-};
+for (const e of Object.keys(elements)) {
+  if (e !== "hide" && e !== "show") {
+    elements.hide(elements[e]);
+  }
+}
 
-async function setup() {
-  data.model = await setupDetection();
-  data.video = await setupVideo();
-  data.ctx = await setupRender();
+async function run() {
+  let next = "splash";
+  let item = null;
+  while (next !== "end") {
+    switch (next) {
+      case "splash":
+        await splashScreen();
+        next = "choose";
+        break;
 
-  canvas.addEventListener("dblclick", () => {
-    if (data.raf) {
-      stop();
-    } else {
-      start();
+      case "choose":
+        item = await chooseScreen();
+        next = item ? "analyze" : "splash";
+        break;
+
+      case "analyze":
+          await analyzeScreen(item);
+          next = 'choose';
+          break;
+
+      default:
+        console.error(`Unknown screen ${next}`);
+        break;
     }
-  });
+  }
 }
 
-async function loop() {
-  data.canvasCtx.drawImage(video, 0, 0, canvas.width, canvas.height);
-  const results = await detect(data.model, data.canvas);
-  await renderResults(results, data.ctx);
-
-  data.raf = requestAnimationFrame(loop);
-}
-
-async function start() {
-  console.log("Starting...");
-  data.raf = requestAnimationFrame(loop);
-}
-
-async function stop() {
-  console.log("Stopping...");
-  cancelAnimationFrame(data.raf);
-  data.raf = null;
-}
-
-// setup().then(start).then(() => console.log("ok"));
-renderParticles();
+run().then(() => console.log("ok"));
