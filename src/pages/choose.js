@@ -21,7 +21,7 @@ function createChoices() {
     const obj = samples[id];
     const btn = document.createElement("button");
     btn.id = id;
-    btn.class = "option";
+    btn.className = "option";
     btn.innerText = obj.title;
     wrapper.appendChild(btn);
   }
