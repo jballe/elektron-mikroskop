@@ -1,6 +1,7 @@
 import { splashScreen } from "./pages/splash";
 import { chooseScreen } from "./pages/choose";
 import { analyzeScreen } from "./pages/analyze";
+// import { setupDetection } from './analyze/detect-cco-ssd';
 import * as elements from "./services/elements";
 require("./index.css");
 
@@ -37,4 +38,5 @@ async function run() {
   }
 }
 
+// setupDetection();
 run().then(() => console.log("ok"));

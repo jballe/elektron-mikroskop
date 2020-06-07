@@ -1,15 +1,23 @@
 import * as tfjs from "@tensorflow/tfjs";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
+import { video } from "../services/elements";
 
+const data = {};
 export async function setupDetection() {
-  return await cocoSsd.load();
+  data.model = await cocoSsd.load();
 }
 
-export async function detect(model, video) {
-  const results = await model.detect(video);
-  return results
+export async function detect() {
+  if(!data.model) {
+    console.log('waiting for model...');
+    return null;
+  }
+  
+  const results = await data.model.detect(video);
+  const mapped = results
     .filter((x) => x.class !== "person")
     .map((obj) => mapResult(obj));
+  return mapped.length === 0 ? null : mapped;
 }
 
 function mapResult(obj) {
