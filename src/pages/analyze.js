@@ -23,6 +23,7 @@ export async function analyzeScreen(chosenItem) {
 
   canvas.addEventListener("click", clickHandler);
   data.video = await getVideo();
+  data.mode = 'search';
   data.raf = requestAnimationFrame(loop);
   return new Promise((resolveFunc) => {
     data.resolve = resolveFunc;
@@ -37,7 +38,7 @@ function cleanup() {
 
 function clickHandler() {
   if (data.raf) {
-    cancelAnimationFrame(raf);
+    cancelAnimationFrame(data.raf);
   } else {
     data.raf = requestAnimationFrame(loop);
   }
@@ -50,13 +51,13 @@ async function loop() {
   }
 
   ctx.drawImage(data.video, 0, 0, canvas.width, canvas.height);
-  const result = detect();
 
   if (data.mode === "search") {
+    const result = detect();
     determineStartRender(result);
-  } else if (data.mode === "render") {
-    determineStopRender(result);
-  } else if (data.mode === "exit") {
+    // } else if (data.mode === "render") {
+    //   determineStopRender(result);
+    // } else if (data.mode === "exit") {
   }
 
   data.raf = requestAnimationFrame(loop);
@@ -96,7 +97,14 @@ function startRender(result) {
   // move svg to result box?
   show(svg);
   startRenderParticles(data.item);
-  hide(canvas);
+  document.addEventListener("click", stopClickHandler);
+  //hide(canvas);
+}
+
+function stopClickHandler() {
+  document.removeEventListener("click", stopClickHandler);
+  data.mode = "exit";
+  startExit();
 }
 
 function startExit() {
