@@ -6,6 +6,7 @@ import {
   stopRenderParticles,
 } from "../analyze/show-particles";
 
+const backgroundColor = "#cc0000";
 const frameCountThreshold = 10;
 const ctx = canvas.getContext("2d");
 const data = {
@@ -23,7 +24,7 @@ export async function analyzeScreen(chosenItem) {
 
   canvas.addEventListener("click", clickHandler);
   data.video = await getVideo();
-  data.mode = 'search';
+  data.mode = "search";
   data.raf = requestAnimationFrame(loop);
   return new Promise((resolveFunc) => {
     data.resolve = resolveFunc;
@@ -96,9 +97,10 @@ function startRender(result) {
   // zoom to result box?
   // move svg to result box?
   show(svg);
+  svg.style.backgroundColor = backgroundColor;
   startRenderParticles(data.item);
   document.addEventListener("click", stopClickHandler);
-  //hide(canvas);
+  hide(canvas);
 }
 
 function stopClickHandler() {
