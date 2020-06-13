@@ -1,8 +1,6 @@
-Text Detection:
-* chrome://flags/#enable-experimental-web-platform-features
+# Elektron mikroskop
 
-Model:
-* https://storage.googleapis.com/tfjs-testing/tfjs-automl/object_detection/model.json
+This is a small webapp that I used for a scout race
 
 Icons:
 * [coronavirus png from pngtree.com](https://pngtree.com/so/coronavirus)
