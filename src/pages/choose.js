@@ -21,7 +21,7 @@ function createChoices() {
   for (const id of Object.keys(samples)) {
     const obj = samples[id];
     const btn = document.createElement("button");
-    btn.id = id;
+    btn.id = `choice-${id}`;
     btn.classList = "option " + (obj.main ? "option-main" : "");
     btn.innerText = obj.title;
     wrapper.appendChild(btn);
@@ -31,14 +31,15 @@ function createChoices() {
 
 function clickHandler(evt) {
   const id = evt.target.id;
-  if (id) {
-    resolve(id);
+  if (id && id.indexOf("choice-") === 0) {
+    const realId = id.substr("choice-".length);
+    resolve(realId);
   }
 }
 
 function cleanup() {
   wrapper.innerHTML = "";
-  wrapper.removeEventListener('click', clickHandler);
+  wrapper.removeEventListener("click", clickHandler);
   hide(wrapper);
   hide(video);
 }
