@@ -1,9 +1,9 @@
-import * as urlImgA from "../../public/assets/type-a.png";
-import * as urlImgB from "../../public/assets/type-b.png";
-import * as urlImgC from "../../public/assets/type-c.png";
-import * as urlImgD from "../../public/assets/type-d.png";
-import * as urlImgE from "../../public/assets/type-e.png";
-import * as urlImgF from "../../public/assets/type-f.png";
+import * as urlImgA from "../assets/type-a.png";
+import * as urlImgB from "../assets/type-b.png";
+import * as urlImgC from "../assets/type-c.png";
+import * as urlImgD from "../assets/type-d.png";
+import * as urlImgE from "../assets/type-e.png";
+import * as urlImgF from "../assets/type-f.png";
 
 const particles = {
   a: {
