@@ -12,7 +12,6 @@ const streamPromise = new Promise(async (resolve) => {
     video: {
       width: 640,
       height: 480,
-      //facingMode: "environment",
       deviceId: { exact: id },
     },
   });
@@ -26,6 +25,14 @@ const streamPromise = new Promise(async (resolve) => {
 async function findDeviceId() {
   let chosenId = storage.getItem(storageItemKey);
 
+  await navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: {
+      width: 640,
+      height: 480,
+      facingMode: "environment",
+    },
+  });
   const devices = (await navigator.mediaDevices.enumerateDevices()).filter(
     (x) => x.kind === "videoinput"
   );
@@ -61,7 +68,7 @@ function createChoices(devices) {
     const btn = document.createElement("button");
     btn.id = obj.deviceId;
     btn.className = "option";
-    btn.innerText = obj.label;
+    btn.innerText = obj.label + JSON.stringify(obj);
     wrapper.appendChild(btn);
   }
   wrapper.addEventListener("click", clickHandler);
