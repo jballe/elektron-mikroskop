@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const { WebpackPluginServe: Serve } = require("webpack-plugin-serve");
 
 module.exports = function (arg, env) {
@@ -35,6 +36,25 @@ module.exports = function (arg, env) {
       new HtmlWebpackPlugin({
         title: "Elektron mikroskopet",
         template: "src/index.ejs",
+      }),
+      new FaviconsWebpackPlugin({
+        logo: "src/assets/splash.png",
+        favicons: {
+          appName: "Elektron mikroskop",
+          appDescription: "Redskab til spejdermødet Ramasjang Mysteriet",
+          developerName: "Jesper Balle",
+          developerURL: null,
+          icons: {
+            android: false,
+            appleIcon: true,
+            appleStartup: true,
+            coast: false,
+            favicons: true,
+            firefox: false,
+            yandex: false,
+            windows: false,
+          },
+        },
       }),
     ],
   };
