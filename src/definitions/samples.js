@@ -1,5 +1,6 @@
 const samples = {
   test: {
+    main: true,
     title: "Gerningsstedet",
     result: {
       c: 2,

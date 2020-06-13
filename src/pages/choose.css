@@ -1,6 +1,10 @@
 .option {
-  margin: 75px;
-  width: 250px;
+  margin: 35px 75px;
+  width: 300px;
   background-color: orange;
   padding: 10px;
+}
+.option-main {
+  width: 750px;
+  margin-top: 100px;
 }
