@@ -11,3 +11,16 @@ svg,
   top: 0;
   left: 0;
 }
+
+video {
+  z-index: 0;
+}
+canvas {
+  z-index: 1;
+}
+svg {
+  z-index: 2;
+}
+#wrapper {
+  z-index: 3;
+}

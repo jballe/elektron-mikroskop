@@ -1,11 +1,12 @@
-import { wrapper, show, hide } from "../services/elements";
+import { show, hide, video, wrapper } from "../services/elements";
 import samples from "../definitions/samples";
-require('./choose.css');
+require("./choose.css");
 
 let resolve = null;
 
 export function chooseScreen() {
   show(wrapper);
+  show(video);
   createChoices();
 
   return new Promise((resolveFunc) => {
@@ -37,5 +38,7 @@ function clickHandler(evt) {
 
 function cleanup() {
   wrapper.innerHTML = "";
+  wrapper.removeEventListener('click', clickHandler);
   hide(wrapper);
+  hide(video);
 }
